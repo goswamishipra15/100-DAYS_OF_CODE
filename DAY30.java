@@ -18,3 +18,20 @@ class Solution {
         return result;
     }
 }
+
+
+//Solution 2 it takes more time than above solution but it is easy to understand. Above solution runtime was 123ms and this solution has 156ms runtime.
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        int result[] = new int[temperatures.length];
+        Stack<Integer> stack = new Stack<>();
+        for(int i=0;i<temperatures.length;i++){
+            while(!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]){
+                int indx = stack.pop();
+                result[indx] = i - indx;
+            }
+            stack.push(i);
+        }
+        return result;
+    }
+}
